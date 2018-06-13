@@ -67,7 +67,7 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
             {
                 "type": "PIP",
-                "package_uri": "git+https://github.com/NewKnowledge/nk_ape.git@68370736ec683fa4515f4f47b13c047cc0f328fe#egg=nk_ape"
+                "package_uri": "git+https://github.com/NewKnowledge/nk_ape.git@68260eb3605c50616a97c4448136bdc39a41ea3c#egg=nk_ape"
             },
             {
                 "type": "PIP",
