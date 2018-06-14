@@ -89,6 +89,7 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
     def __init__(self, *, hyperparams: Hyperparams, volumes: typing.Dict[str,str]=None)-> None:
         super().__init__(hyperparams=hyperparams, volumes=volumes)
 
+        print(dir(volumes))
         self.volumes = volumes
 
     def fit(self) -> None:
@@ -121,8 +122,6 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
         target_columns = self.hyperparams['target_columns']
         output_labels = self.hyperparams['output_labels']
-
-        print(dir(self.volumes['en.model']))
 
         input_df = inputs
         tree = '../ontologies/class-tree_dbpedia_2016-10.json'
