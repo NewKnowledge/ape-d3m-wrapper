@@ -123,7 +123,7 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         output_labels = self.hyperparams['output_labels']
 
         input_df = inputs
-        tree = 'ontologies/class-tree_dbpedia_2016-10.json'
+        tree = '../ontologies/class-tree_dbpedia_2016-10.json'
         embedding = self.volumes['en.model']
         row_agg_func = mean_of_rows
         tree_agg_func = np.mean
