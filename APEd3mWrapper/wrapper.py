@@ -89,10 +89,8 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
     def __init__(self, *, hyperparams: Hyperparams, volumes: typing.Dict[str,str]=None)-> None:
         super().__init__(hyperparams=hyperparams, volumes=volumes)
 
-        print(list(volumes.keys()))
         self.volumes = volumes
-
-        print(list(self.volumes.keys()))
+        self._params = {}
 
     def fit(self) -> None:
         pass
