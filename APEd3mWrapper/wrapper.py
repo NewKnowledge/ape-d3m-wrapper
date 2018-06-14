@@ -118,62 +118,56 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         output : input pandas dataframe augmented with related concepts as
             predicted by APE.
         """
-        try:
-            target_columns = self.hyperparams['target_columns']
-            output_labels = self.hyperparams['output_labels']
 
-            input_df = inputs
-            tree = 'ontologies/class-tree_dbpedia_2016-10.json'
-            embedding = self._volumes['en.model']
-            row_agg_func = mean_of_rows
-            tree_agg_func = np.mean
-            source_agg_func = mean_of_rows
-            max_num_samples = 1e6
-            n_words = 10
-            verbose = True
+        target_columns = self.hyperparams['target_columns']
+        output_labels = self.hyperparams['output_labels']
 
-            for i, ith_column in enumerate(target_columns):
-                # initialize an empty dataframe
-                result_df = pd.DataFrame()
-                output_label = output_labels[i]
+        input_df = inputs
+        tree = 'ontologies/class-tree_dbpedia_2016-10.json'
+        embedding = self._volumes['en.model']
+        row_agg_func = mean_of_rows
+        tree_agg_func = np.mean
+        source_agg_func = mean_of_rows
+        max_num_samples = 1e6
+        n_words = 10
+        verbose = True
 
-                for concept_set in input_df.loc[:, ith_column]:
+        for i, ith_column in enumerate(target_columns):
+            # initialize an empty dataframe
+            result_df = pd.DataFrame()
+            output_label = output_labels[i]
 
-                    if not isinstance(concept_set, (list, tuple)):
-                        concept_set = concept_set.split(' ')
+            for concept_set in input_df.loc[:, ith_column]:
 
-                    ape_client = ConceptDescriptor(
-                        concepts=concept_set,
-                        tree=tree,
-                        embedding=embedding,
-                        row_agg_func=row_agg_func,
-                        tree_agg_func=tree_agg_func,
-                        max_num_samples=max_num_samples,
-                        verbose=verbose
-                    )
+                if not isinstance(concept_set, (list, tuple)):
+                    concept_set = concept_set.split(' ')
 
-                    result = ape_client.get_top_n_words(n_words)
+                ape_client = ConceptDescriptor(
+                    concepts=concept_set,
+                    tree=tree,
+                    embedding=embedding,
+                    row_agg_func=row_agg_func,
+                    tree_agg_func=tree_agg_func,
+                    max_num_samples=max_num_samples,
+                    verbose=verbose
+                )
 
-                    result_df = result_df.append(
-                        {output_label + '_concepts': [i['concept'] for i in result],
-                         output_label + '_confs': [i['conf'] for i in result]},
-                        ignore_index=True)
+                result = ape_client.get_top_n_words(n_words)
 
-                input_df = pd.concat(
-                    [input_df.reset_index(drop=True), result_df], axis=1)
+                result_df = result_df.append(
+                    {output_label + '_concepts': [i['concept'] for i in result],
+                     output_label + '_confs': [i['conf'] for i in result]},
+                    ignore_index=True)
 
-            return input_df
+            input_df = pd.concat(
+                [input_df.reset_index(drop=True), result_df], axis=1)
 
-        except:
-            return "APE failed to complete abstractive prediction"
+        return input_df
 
 
 if __name__ == '__main__':
-    client = ape(hyperparams={'target_columns': ['test_column'],
-                               'output_labels': ['test_column_prefix']})
-    input_df = pd.DataFrame(
-        pd.Series([['gorilla', 'chimp', 'orangutan', 'gibbon', 'human'],
-                   ['enzyme', 'gene', 'hormone', 'lipid', 'polysaccharide']]))
+    client = ape(hyperparams={'target_columns': ['test_column'],'output_labels': ['test_column_prefix']})
+    input_df = pd.DataFrame(pd.Series([['gorilla', 'chimp', 'orangutan', 'gibbon', 'human'],['enzyme', 'gene', 'hormone', 'lipid', 'polysaccharide']]))
     input_df.columns = ['test_column']
     result = client.produce(inputs=input_df)
     print(result.head)
