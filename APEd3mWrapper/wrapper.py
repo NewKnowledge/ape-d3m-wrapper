@@ -122,6 +122,8 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         target_columns = self.hyperparams['target_columns']
         output_labels = self.hyperparams['output_labels']
 
+        print(dir(self.volumes['en.model']))
+
         input_df = inputs
         tree = '../ontologies/class-tree_dbpedia_2016-10.json'
         embedding = self.volumes['en.model']
