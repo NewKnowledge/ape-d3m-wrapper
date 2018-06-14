@@ -92,6 +92,8 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         self.volumes = volumes
         self._params = {}
 
+        print(self.volumes.keys())
+
     def fit(self) -> None:
         pass
 
