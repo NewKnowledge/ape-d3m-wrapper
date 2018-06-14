@@ -86,7 +86,7 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         "primitive_family": metadata_base.PrimitiveFamily.FEATURE_CONSTRUCTION
     })
 
-    def __init__(self, *, hyperparams: Hyperparams, volumes: typing.Dict[str,str]=None)-> None:
+    def __init__(self, *, hyperparams: Hyperparams, volumes: typing.Dict[str,str])-> None:
         super().__init__(hyperparams=hyperparams, volumes=volumes)
 
         self.volumes = volumes
