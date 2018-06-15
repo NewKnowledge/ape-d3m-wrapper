@@ -92,8 +92,6 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         self.embedding = volumes['en_model']
         self._params = {}
 
-        print(self.volumes.keys())
-
     def fit(self) -> None:
         pass
 
