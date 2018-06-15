@@ -90,7 +90,7 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         super().__init__(hyperparams=hyperparams, volumes=volumes)
 
         print(volumes.keys())
-        self.embedding = volumes['en.model']
+        self._embedding = volumes['en.model']
         self._params = {}
 
     def fit(self) -> None:
@@ -126,7 +126,7 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
         input_df = inputs
         tree = '../ontologies/class-tree_dbpedia_2016-10.json'
-        embedding = self.embedding
+        embedding = self._embedding
         row_agg_func = mean_of_rows
         tree_agg_func = np.mean
         source_agg_func = mean_of_rows
