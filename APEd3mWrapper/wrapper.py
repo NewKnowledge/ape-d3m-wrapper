@@ -89,6 +89,7 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
     def __init__(self, *, hyperparams: Hyperparams, volumes: typing.Dict[str,str]=None)-> None:
         super().__init__(hyperparams=hyperparams, volumes=volumes)
 
+        print(volumes.keys())
         self.embedding = volumes['en_model']
         self._params = {}
 
