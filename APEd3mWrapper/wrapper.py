@@ -90,7 +90,7 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         super().__init__(hyperparams=hyperparams, volumes=volumes)
 
         print(volumes.keys())
-        self.embedding = volumes['en_model']
+        self.embedding = volumes['en.model']
         self._params = {}
 
     def fit(self) -> None:
