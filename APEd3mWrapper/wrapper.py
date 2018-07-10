@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 
 from nk_ape import *
+from nk_ape.utils import mean_of_rows
 
 from d3m.primitive_interfaces.base import PrimitiveBase, CallResult
 
