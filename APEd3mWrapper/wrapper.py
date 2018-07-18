@@ -48,27 +48,14 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         # a dependency which is not on PyPi.
         "installation": [
             {
-                "type": "FILE",
+                "type": "TGZ",
                 "key": "en.model",
-                "file_uri": "http://public.datadrivendiscovery.org/en_1000_no_stem/en.model",
-                "file_digest": "e974c8783b8ce9aa3e598c555a8ffa9cb5bdfe970955fed00702850b855e3257"
+                "file_uri": "http://public.datadrivendiscovery.org/en_1000_no_stem.tar.gz",
+                "file_digest":"3b1238137bba14222ae7c718f535c68a3d7190f244296108c895f1abe8549861"
             },
-            {
-                "type": "FILE",
-                "key": "en.model.syn0.npy",
-                "file_uri": "http://public.datadrivendiscovery.org/en_1000_no_stem/en.model.syn0.npy",
-                "file_digest": "1b30f64c99a90c16a133cf06eb4349d012de83ae915e2467b710b7b6417a9d56"
-            },
-            {
-                "type": "FILE",
-                "key": "en.model.syn1.npy",
-                "file_uri": "http://public.datadrivendiscovery.org/en_1000_no_stem/en.model.syn1.npy",
-                "file_digest": "aa88b503ca1472d6efd7babe42b452e21178a74df80e01a7eb253c5eff96cd50"
-            },
-
             {
                 "type": "PIP",
-                "package_uri": "git+https://github.com/NewKnowledge/nk_ape.git@68260eb3605c50616a97c4448136bdc39a41ea3c#egg=nk_ape"
+                "package_uri": "git+https://github.com/NewKnowledge/nk_ape.git@12a53d699b201abb3bc42999d0400c5f015e4939#egg=nk_ape"
             },
             {
                 "type": "PIP",
@@ -90,7 +77,7 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
     def __init__(self, *, hyperparams: Hyperparams, volumes: typing.Dict[str,str]=None)-> None:
         super().__init__(hyperparams=hyperparams, volumes=volumes)
 
-        self._embedding = volumes['en.model']
+        self.volumes = volumes
         self._params = {}
 
     def fit(self) -> None:
@@ -125,8 +112,8 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         output_labels = self.hyperparams['output_labels']
 
         input_df = inputs
-        tree = '../ontologies/class-tree_dbpedia_2016-10.json'
-        embedding = self._embedding
+        tree = '/usr/local/lib/python3.6/dist-packages/nk_ape/ontologies/class-tree_dbpedia_2016-10.json'
+        embedding = self.volumes['en.model'] + "/en.model"
         row_agg_func = mean_of_rows
         tree_agg_func = np.mean
         source_agg_func = mean_of_rows
