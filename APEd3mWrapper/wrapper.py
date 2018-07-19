@@ -114,7 +114,7 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
 
         input_df = inputs
         tree = '/usr/local/lib/python3.6/dist-packages/nk_ape/ontologies/class-tree_dbpedia_2016-10.json'
-        embedding = self.volumes['en.model'] + "/en.model"
+        embedding_path = self.volumes['en.model'] + "/en_1000_no_stem/en.model"
         row_agg_func = mean_of_rows
         tree_agg_func = np.mean
         source_agg_func = mean_of_rows
