@@ -11,6 +11,7 @@ setup(name='APEd3mWrapper',
                         'nk_ape >= 1.0.3'],
       dependency_links=[
           "git+https://github.com/NewKnowledge/nk_ape@d740f890b05372fb910acdfbc6ec88bdd603d3af#egg=nk_ape-1.0.3"
+
       ],
       entry_points={
           'd3m.primitives': [
