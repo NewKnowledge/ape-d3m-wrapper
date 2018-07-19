@@ -134,7 +134,7 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
                 ape_client = ConceptDescriptor(
                     concepts=concept_set,
                     tree=tree,
-                    embedding=embedding,
+                    embedding=embedding_path,
                     row_agg_func=row_agg_func,
                     tree_agg_func=tree_agg_func,
                     max_num_samples=max_num_samples,
