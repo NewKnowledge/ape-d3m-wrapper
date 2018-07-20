@@ -13,7 +13,7 @@ from d3m import container, utils
 from d3m.metadata import hyperparams, base as metadata_base, params
 
 __author__ = 'Distil'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 Inputs = container.pandas.DataFrame
 Outputs = container.pandas.DataFrame
@@ -56,7 +56,6 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
             {
                 "type": "PIP",
                 "package_uri": "git+https://github.com/NewKnowledge/nk_ape.git@d740f890b05372fb910acdfbc6ec88bdd603d3af#egg=nk_ape"
-
             },
             {
                 "type": "PIP",
@@ -113,7 +112,7 @@ class ape(PrimitiveBase[Inputs, Outputs, Params, Hyperparams]):
         output_labels = self.hyperparams['output_labels']
 
         input_df = inputs
-        tree = '/usr/local/lib/python3.6/dist-packages/nk_ape/ontologies/class-tree_dbpedia_2016-10.json'
+        tree = '/src/nk-ape/nk_ape/ontologies/class-tree_dbpedia_2016-10.json'
         embedding_path = self.volumes['en.model'] + "/en_1000_no_stem/en.model"
         row_agg_func = mean_of_rows
         tree_agg_func = np.mean

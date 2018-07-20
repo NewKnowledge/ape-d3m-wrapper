@@ -2,7 +2,7 @@ from distutils.core import setup
 
 
 setup(name='APEd3mWrapper',
-      version='1.0.0',
+      version='1.0.1',
       description='Abstractive Prediction via (Concept) Embedding primitive.',
       packages=['APEd3mWrapper'],
       keywords=['d3m_primitive'],
