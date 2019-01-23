@@ -14,4 +14,4 @@ Input pandas dataframe augmented with related concepts as predicted by APE.
 ## Available Functions
 
 #### produce
-Produce primitive's best guess for the structural type of each input column. The input is a pandas dataframe. The output is input pandas dataframe augmented with related concepts as predicted by APE.
+Produce a constellation of similar concepts that may be at a higher level of abstraction (i.e., summaries) than the input. The input is a pandas dataframe. The output is input pandas dataframe augmented with related concepts as predicted by APE.
